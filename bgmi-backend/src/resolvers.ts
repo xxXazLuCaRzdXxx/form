@@ -1,6 +1,5 @@
 import { Player, IPlayer } from './models/Player';
 
-// Define an interface for the input type
 interface PlayerInput {
   username: string;
   email: string;
