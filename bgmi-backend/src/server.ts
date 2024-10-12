@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import mongoose from 'mongoose';
 import cors from 'cors';
-import responseTime from 'response-time'; // Importing response-time correctly
+import responseTime from 'response-time';
 import { typeDefs } from './schema';
 import { resolvers } from './resolvers';
 import { Express } from 'express-serve-static-core';
@@ -12,7 +12,6 @@ async function startApolloServer() {
 
   app.use(cors());
 
-  // Add response-time middleware
   app.use(responseTime((req: Request, res: Response, time: number) => {
     console.log(`Request to ${req.originalUrl} took ${time.toFixed(2)}ms`);
   }));
@@ -25,7 +24,7 @@ async function startApolloServer() {
   await server.start();
 
   server.applyMiddleware({
-    app: app as any, // Type assertion here
+    app: app as any,
     path: '/graphql'
   });
 
